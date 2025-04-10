@@ -1,13 +1,24 @@
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from datetime import datetime
 from flask import Flask, request, render_template, redirect, url_for, send_file, session
 from werkzeug.utils import secure_filename
-from product_system.processor import DocumentProcessor  # Impor DocumentProcessor untuk dokumen tunggal
-from product_system.multi_processor import MultiDocumentProcessor, process_multiple_files  # Impor untuk dokumen multi
+from product_system.processor import DocumentProcessor
+from product_system.multi_processor import MultiDocumentProcessor, process_multiple_files
 import json
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Diperlukan untuk menggunakan session
+app.secret_key = 'supersecretkey'
+
+# Tambahkan route sesuai kebutuhan Anda
+@app.route('/')
+def home():
+    return "Hello, this is PROYEK-PDF!"
+
+@app.route('/test')
+def test():
+    return "Test route is working!"
 
 # Konfigurasi folder (gunakan path absolut)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Direktori backend/
