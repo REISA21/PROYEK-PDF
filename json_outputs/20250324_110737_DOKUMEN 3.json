@@ -1,0 +1,253 @@
+{
+    "m_discountschema_id": 0,
+    "ad_org_id": 0,
+    "c_doctype_id": 1000134,
+    "name": "MILA REF CP NO : Additional-CP20DJFAJ001-2501014 PST DEAL KHUSUS",
+    "description": "MILA REF CP NO : Additional-CP20DJFAJ001-2501014 PST DEAL KHUSUS",
+    "discounttype": "B",
+    "vendor_id": 1000078,
+    "requirementtype": "MS",
+    "flatdiscounttype": "P",
+    "previousschema_id": 1012785,
+    "cumulativelevel": "L",
+    "validfrom": "20250306",
+    "validto": "20250315",
+    "selectiontype": "ESC",
+    "budgettype": "NB",
+    "organizationaleffectiveness": "ISO",
+    "isbirthdaydiscount": "N",
+    "isincludingsubordinate": "N",
+    "qtyallocated": 0,
+    "issotrx": "Y",
+    "ispickup": "N",
+    "fl_isallowmultiplediscount": "N",
+    "isactive": "Y",
+    "list_org": [
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_org_id": 0,
+            "ad_org_id": 0,
+            "ad_orgtrx_id": 1000006,
+            "isactive": "Y"
+        }
+    ],
+    "list_customer": [
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1002877
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1003325
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1005901
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1007118
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1007158
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1007211
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1007384
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1007429
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1011554
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1011914
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1012328
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1014285
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1014960
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1023715
+        },
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_customer_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "c_bpartner_id": 1023846
+        }
+    ],
+    "list_break": [
+        {
+            "m_discountschema_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "seqno": 10,
+            "targetbreak": "EP",
+            "discounttype": "PVD",
+            "breaktype": "M",
+            "calculationtype": "Q",
+            "name": "CP20DJFAJ01-2501014 MILA REF CP NO : Additional-CP20DJFAJ001-2501014 DEAL KHUSUS PST",
+            "requirementtype": "MS",
+            "productselection": "IOP",
+            "c_uom_id": 1000020,
+            "m_product_id": "MILA FLOUR BAG @1KG",
+            "m_product_category_id": null,
+            "budgettype": "GB",
+            "budgetcalculation": "QTY",
+            "qtyallocated": 1000,
+            "breakvalue": 0,
+            "breakdiscount": 0,
+            "isshareddiscount": "N",
+            "isincludingsubordinate": "N",
+            "isbirthdaydiscount": "N",
+            "isonlycountmaxrange": "Y",
+            "istragetbeforediscount": "N",
+            "ismix": "N",
+            "isdiscountedbonus": "N",
+            "isstrictstrata": "Y",
+            "isvendorcashback": "Y",
+            "ismixrequired": "N",
+            "isstratabudget": "Y",
+            "isactive": "Y",
+            "list_product": [],
+            "list_customer": [],
+            "list_bonus": [],
+            "list_budget": [],
+            "list_line": [
+                {
+                    "m_discountschemabreak_id": 0,
+                    "uns_dsbreakline_id": 0,
+                    "name": "CP20DJFAJ01-2501014 MILA REF CP NO : Additional-CP20DJFAJ001-2501014 DEAL KHUSUS PST",
+                    "breakvalue": 300,
+                    "breakvalueto": 1000,
+                    "qtyallocated": 1000,
+                    "breakdiscount": 7.02,
+                    "seconddiscount": 0,
+                    "thirddiscount": 0,
+                    "fourthdiscount": 0,
+                    "fifthdiscount": 0,
+                    "isactive": "Y",
+                    "list_bonus": [],
+                    "list_budget": []
+                }
+            ]
+        },
+        {
+            "m_discountschema_id": 0,
+            "m_discountschemabreak_id": 0,
+            "ad_org_id": 0,
+            "seqno": 20,
+            "targetbreak": "EP",
+            "discounttype": "PVD",
+            "breaktype": "M",
+            "calculationtype": "Q",
+            "name": "CP20DJFAJ01-2501014 MILA REF CP NO : Additional-CP20DJFAJ001-2501014 DEAL KHUSUS PST",
+            "requirementtype": "MS",
+            "productselection": "IOP",
+            "c_uom_id": 1000020,
+            "m_product_id": "MILA FLOUR BAG @1KG",
+            "m_product_category_id": null,
+            "budgettype": "GB",
+            "budgetcalculation": "QTY",
+            "qtyallocated": 1000,
+            "breakvalue": 0,
+            "breakdiscount": 0,
+            "isshareddiscount": "Y",
+            "isincludingsubordinate": "N",
+            "isbirthdaydiscount": "N",
+            "isonlycountmaxrange": "Y",
+            "istragetbeforediscount": "N",
+            "ismix": "N",
+            "isdiscountedbonus": "N",
+            "isstrictstrata": "Y",
+            "isvendorcashback": "N",
+            "ismixrequired": "N",
+            "isstratabudget": "Y",
+            "isactive": "Y",
+            "list_product": [],
+            "list_customer": [],
+            "list_bonus": [],
+            "list_budget": [],
+            "list_line": [
+                {
+                    "m_discountschemabreak_id": 0,
+                    "uns_dsbreakline_id": 0,
+                    "name": "CP20DJFAJ01-2501014 MILA REF CP NO : Additional-CP20DJFAJ001-2501014 DEAL KHUSUS PST",
+                    "breakvalue": 300,
+                    "breakvalueto": 1000,
+                    "qtyallocated": 1000,
+                    "breakdiscount": 1,
+                    "seconddiscount": 0,
+                    "thirddiscount": 0,
+                    "fourthdiscount": 0,
+                    "fifthdiscount": 0,
+                    "isactive": "Y",
+                    "list_bonus": [],
+                    "list_budget": []
+                }
+            ]
+        }
+    ]
+}

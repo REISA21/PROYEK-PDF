@@ -1,0 +1,36 @@
+{
+    "m_discountschema_id": 0,
+    "ad_org_id": 0,
+    "c_doctype_id": 1000134,
+    "name": "MILA REF CP NO: - PST STRATA DISCOUNT",
+    "description": "MILA REF CP NO: - PST STRATA DISCOUNT",
+    "discounttype": "B",
+    "vendor_id": 1000078,
+    "requirementtype": "MS",
+    "flatdiscounttype": "P",
+    "previousschema_id": 1012785,
+    "cumulativelevel": "L",
+    "validfrom": "Unknown",
+    "validto": "Unknown",
+    "selectiontype": "ESC",
+    "budgettype": "NB",
+    "organizationaleffectiveness": "ISO",
+    "qtyallocated": 0,
+    "issotrx": "Y",
+    "ispickup": "N",
+    "fl_isallowmultiplediscount": "N",
+    "isincludingsubordinate": "N",
+    "isbirthdaydiscount": "N",
+    "isactive": "Y",
+    "list_org": [
+        {
+            "m_discountschema_id": 0,
+            "uns_discount_org_id": 0,
+            "ad_org_id": 0,
+            "ad_orgtrx_id": 1000006,
+            "isactive": "Y"
+        }
+    ],
+    "list_customer": [],
+    "list_break": []
+}

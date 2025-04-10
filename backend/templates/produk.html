@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Produk</title>
+</head>
+<body>
+    <h1>Data Produk</h1>
+    <table border="1">
+        <tr>
+            <th>Brand</th>
+            <th>Kategori</th>
+            <th>Harga</th>
+            <th>Diskon</th>
+        </tr>
+        {% for p in produk %}
+        <tr>
+            <td>{{ p.brand }}</td>
+            <td>{{ p.kategori }}</td>
+            <td>{{ p.harga }}</td>
+            <td>{{ p.diskon }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

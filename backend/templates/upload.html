@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+        }
+        .item {
+            background-color: white;
+            border-radius: 12px;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+        .item-logo {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .item-logo:hover {
+            transform: scale(1.1);
+        }
+        .documents { background: linear-gradient(135deg, #4a90e2, #50e3c2); }
+        .item h3 {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            font-weight: 500;
+        }
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .choose-file-btn {
+            background-color: #4a90e2;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .choose-file-btn:hover {
+            background-color: #357abd;
+        }
+        button {
+            background-color: #50e3c2;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #34c9a8;
+        }
+        .delete-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background-color 0.3s;
+            margin-left: 5px;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        .drag-area {
+            border: 2px dashed #4a90e2;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .drag-area.dragover {
+            background-color: #e1f5fe;
+        }
+        .drag-area p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+            margin-top: 5px;
+        }
+        .success-message {
+            color: green;
+            font-size: 12px;
+            display: none;
+            margin-top: 5px;
+        }
+        .server-message {
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .server-message.success {
+            color: green;
+        }
+        .server-message.error {
+            color: red;
+        }
+        .uploaded-files {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .uploaded-files h4 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .uploaded-files ul {
+            list-style: none;
+            padding: 0;
+        }
+        .uploaded-files li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .uploaded-files a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .uploaded-files a:hover {
+            text-decoration: underline;
+        }
+        .upload-time {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="item">
+            <div class="item-logo documents">D</div>
+            <h3>Documents</h3>
+            <!-- Tampilkan pesan sukses atau error dari server -->
+            {% if success %}
+                <div class="server-message success">{{ success }}</div>
+            {% endif %}
+            {% if error %}
+                <div class="server-message error">{{ error }}</div>
+            {% endif %}
+            <div class="upload-form">
+                <!-- Form untuk mengunggah satu file -->
+                <form id="single-upload-form" method="POST" action="/upload-single" enctype="multipart/form-data" class="upload-form">
+                    <input type="file" id="file-documents-single" name="file" accept=".pdf">
+                    <button type="button" class="choose-file-btn" onclick="document.getElementById('file-documents-single').click()">Choose Single File</button>
+                    <button type="button" onclick="uploadSingleFile()">Upload Single File</button>
+                    <div id="single-error-message" class="error-message"></div>
+                    <div id="single-success-message" class="success-message"></div>
+                </form>
+                <!-- Form untuk mengunggah banyak file -->
+                <form id="multiple-upload-form" method="POST" action="/upload-multiple" enctype="multipart/form-data" class="upload-form">
+                    <input type="file" id="file-documents-multiple" name="files[]" accept=".pdf" multiple>
+                    <button type="button" class="choose-file-btn" onclick="document.getElementById('file-documents-multiple').click()">Choose Multiple Files</button>
+                    <button type="button" onclick="uploadMultipleFiles()">Upload Multiple Files</button>
+                    <div class="drag-area" id="drag-area">
+                        <p>Drag & Drop files here or click to select</p>
+                    </div>
+                    <div id="multiple-error-message" class="error-message"></div>
+                    <div id="multiple-success-message" class="success-message"></div>
+                </form>
+            </div>
+            <!-- Tampilkan daftar file JSON yang telah diunggah -->
+            {% if json_files %}
+                <div class="uploaded-files">
+                    <h4>Uploaded Files</h4>
+                    <ul>
+                        {% for file in json_files %}
+                            <li>
+                                <div>
+                                    <a href="{{ url_for('download_json', filename=file.nomor) }}">{{ file.nomor }}.json</a>
+                                    <span class="upload-time">Uploaded at: {{ file.upload_time }}</span>
+                                </div>
+                                <form action="{{ url_for('delete_json', filename=file.nomor) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mengunggah satu file
+        function uploadSingleFile() {
+            console.log("uploadSingleFile() called"); // Debugging
+            const fileInput = document.getElementById('file-documents-single');
+            const form = document.getElementById('single-upload-form');
+            const errorMessage = document.getElementById('single-error-message');
+            const successMessage = document.getElementById('single-success-message');
+
+            // Reset pesan
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validasi file
+            console.log("File input:", fileInput.files); // Debugging
+            if (!fileInput.files || fileInput.files.length !== 1) {
+                console.log("Validation failed: No file selected or more than one file selected"); // Debugging
+                errorMessage.textContent = 'Harap pilih satu file PDF.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            const file = fileInput.files[0];
+            console.log("Selected file:", file.name); // Debugging
+            if (!file.name.endsWith('.pdf')) {
+                console.log("Validation failed: File is not a PDF"); // Debugging
+                errorMessage.textContent = 'File harus berformat PDF.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Submit form
+            console.log("Submitting single upload form"); // Debugging
+            successMessage.textContent = 'Mengunggah file...';
+            successMessage.style.display = 'block';
+            form.submit();
+        }
+
+        // Fungsi untuk mengunggah banyak file
+        function uploadMultipleFiles() {
+            console.log("uploadMultipleFiles() called"); // Debugging
+            const fileInput = document.getElementById('file-documents-multiple');
+            const form = document.getElementById('multiple-upload-form');
+            const errorMessage = document.getElementById('multiple-error-message');
+            const successMessage = document.getElementById('multiple-success-message');
+
+            // Reset pesan
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            // Validasi file
+            console.log("File input:", fileInput.files); // Debugging
+            if (!fileInput.files || fileInput.files.length < 1) {
+                console.log("Validation failed: No files selected"); // Debugging
+                errorMessage.textContent = 'Harap unggah setidaknya satu file PDF.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            let allFilesArePDF = true;
+            for (let i = 0; i < fileInput.files.length; i++) {
+                if (!fileInput.files[i].name.endsWith('.pdf')) {
+                    allFilesArePDF = false;
+                    break;
+                }
+            }
+
+            if (!allFilesArePDF) {
+                console.log("Validation failed: Not all files are PDFs"); // Debugging
+                errorMessage.textContent = 'Semua file harus berformat PDF.';
+                errorMessage.style.display = 'block';
+                return;
+            }
+
+            // Submit form
+            console.log("Submitting multiple upload form"); // Debugging
+            successMessage.textContent = 'Mengunggah file...';
+            successMessage.style.display = 'block';
+            form.submit();
+        }
+
+        // Drag-and-drop functionality
+        const dragArea = document.getElementById('drag-area');
+        const fileInputMultiple = document.getElementById('file-documents-multiple');
+        const errorMessage = document.getElementById('multiple-error-message');
+        const successMessage = document.getElementById('multiple-success-message');
+
+        dragArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dragArea.classList.add('dragover');
+        });
+
+        dragArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            dragArea.classList.remove('dragover');
+        });
+
+        dragArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dragArea.classList.remove('dragover');
+
+            const files = e.dataTransfer.files;
+            fileInputMultiple.files = files;
+
+            console.log("Files dropped:", files); // Debugging
+            if (files.length < 1) {
+                console.log("Validation failed: No files dropped"); // Debugging
+                errorMessage.textContent = 'Harap unggah setidaknya satu file PDF.';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            let allFilesArePDF = true;
+            for (let i = 0; i < files.length; i++) {
+                if (!files[i].name.endsWith('.pdf')) {
+                    allFilesArePDF = false;
+                    break;
+                }
+            }
+
+            if (!allFilesArePDF) {
+                console.log("Validation failed: Not all dropped files are PDFs"); // Debugging
+                errorMessage.textContent = 'Semua file harus berformat PDF.';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+            successMessage.textContent = `Berhasil memilih ${files.length} file. Klik "Upload Multiple Files" untuk mengunggah.`;
+            successMessage.style.display = 'block';
+        });
+
+        // Klik pada drag area untuk memilih file
+        dragArea.addEventListener('click', () => {
+            fileInputMultiple.click();
+        });
+
+        // Ketika file dipilih melalui input untuk multiple upload
+        fileInputMultiple.addEventListener('change', () => {
+            const files = fileInputMultiple.files;
+
+            console.log("Files selected via input:", files); // Debugging
+            if (files.length < 1) {
+                console.log("Validation failed: No files selected via input"); // Debugging
+                errorMessage.textContent = 'Harap unggah setidaknya satu file PDF.';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            let allFilesArePDF = true;
+            for (let i = 0; i < files.length; i++) {
+                if (!files[i].name.endsWith('.pdf')) {
+                    allFilesArePDF = false;
+                    break;
+                }
+            }
+
+            if (!allFilesArePDF) {
+                console.log("Validation failed: Not all selected files are PDFs"); // Debugging
+                errorMessage.textContent = 'Semua file harus berformat PDF.';
+                errorMessage.style.display = 'block';
+                successMessage.style.display = 'none';
+                return;
+            }
+
+            errorMessage.style.display = 'none';
+            successMessage.textContent = `Berhasil memilih ${files.length} file. Klik "Upload Multiple Files" untuk mengunggah.`;
+            successMessage.style.display = 'block';
+        });
+    </script>
+</body>
+</html>

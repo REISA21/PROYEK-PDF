@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Detail Produk</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f5f7fa; /* Latar belakang halaman abu-abu sangat muda */
+            margin: 0;
+            padding: 40px;
+        }
+        .container {
+            max-width: 900px; /* Lebar maksimum container */
+            margin: 0 auto;
+            background-color: #ffffff; /* Latar belakang putih untuk container */
+            padding: 30px;
+            border-radius: 12px; /* Sudut membulat */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+        }
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #555;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%; /* Memastikan tabel mengisi lebar container */
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #ffffff; /* Latar belakang tabel putih */
+            border: 1px solid #d0d0d0; /* Border tabel tegas */
+        }
+        th, td {
+            padding: 12px 15px; /* Padding untuk ruang nyaman */
+            text-align: left;
+            border: 1px solid #d0d0d0; /* Border sel tegas */
+            font-size: 14px;
+            color: #333;
+        }
+        th {
+            background-color: #f2f2f2; /* Header abu-abu muda */
+            font-weight: 600;
+            color: #444;
+        }
+        td {
+            background-color: #fafafa; /* Latar belakang sel sedikit terang */
+        }
+        /* Efek hover pada baris tabel */
+        tr:hover td {
+            background-color: #f0f0f0; /* Warna saat hover */
+        }
+        /* Menghapus padding atau margin yang mengganggu di dalam container */
+        .container > * {
+            margin: 0 auto;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Produk</h1>
+
+        <!-- Tabel Data Utama -->
+        <h2>Data Utama</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            {% for key, value in main_data.items() %}
+            <tr>
+                <td>{{ key }}</td>
+                <td>{{ value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Tabel Checkboxes -->
+        <h2>Checkboxes</h2>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Status</th>
+            </tr>
+            {% for category_key, category_value in main_data.items() if category_key in ["COST CATEGORY", "TIPE CP", "TIPE CLAIM", "CLAIM BASED"] %}
+            {% for option, status in category_value.items() %}
+            <tr>
+                <td>{{ option }}</td>
+                <td>{{ status }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </table>
+
+        <!-- Tabel yang Diekstrak -->
+        {% for table in tables %}
+        <h2>{{ table[0][0] if table and table[0] else "Tabel" }}</h2>
+        <table>
+            {% for row in table %}
+            <tr>
+                {% for cell in row %}
+                <td>{{ cell if cell else "" }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
+    </div>
+</body>
+</html>
