@@ -1,24 +1,13 @@
-import sys
 import os
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from datetime import datetime
 from flask import Flask, request, render_template, redirect, url_for, send_file, session
 from werkzeug.utils import secure_filename
-from product_system.processor import DocumentProcessor
-from product_system.multi_processor import MultiDocumentProcessor, process_multiple_files
+from product_system.processor import DocumentProcessor  # Impor DocumentProcessor untuk dokumen tunggal
+from product_system.multi_processor import MultiDocumentProcessor, process_multiple_files  # Impor untuk dokumen multi
 import json
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
-
-# Tambahkan route sesuai kebutuhan Anda
-@app.route('/')
-def home():
-    return "Hello, this is PROYEK-PDF!"
-
-@app.route('/test')
-def test():
-    return "Test route is working!"
+app.secret_key = 'supersecretkey'  # Diperlukan untuk menggunakan session
 
 # Konfigurasi folder (gunakan path absolut)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Direktori backend/
@@ -29,7 +18,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['CSV_FOLDER'] = CSV_FOLDER
 app.config['JSON_FOLDER'] = JSON_FOLDER
 
-# Pastikan folder ada dan memiliki izin tulis
+
 for folder in [UPLOAD_FOLDER, CSV_FOLDER, JSON_FOLDER]:
     print(f"Checking if folder exists: {folder}")
     if not os.path.exists(folder):
@@ -38,7 +27,7 @@ for folder in [UPLOAD_FOLDER, CSV_FOLDER, JSON_FOLDER]:
     else:
         print(f"Folder already exists: {folder}")
 
-    # Periksa izin tulis
+    # xxx
     try:
         test_file = os.path.join(folder, "test_write.txt")
         with open(test_file, 'w') as f:
@@ -364,4 +353,4 @@ def delete_json(filename):
         return redirect(url_for('index', error="File JSON tidak ditemukan."))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=False)
+    app.run(host='0.0.0.0', port=5000)  # Bukan hanya app.run()
